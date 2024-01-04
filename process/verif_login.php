@@ -1,40 +1,34 @@
 <?php
-require_once('./process/connexion.php');
-//var_dump($_POST);
+require_once('../process/connexion.php');
 
 
-if (
-
-    isset($_POST['pseudo']) && !empty($_POST['pseudo'])
-
-) {
-    $request = $database->query("SELECT * FROM `user` WHERE pseudo ='" . $_POST['pseudo'] . "'");
-    // Select * FROM user WHERE pseudo = 'Anthony'
+if (isset($_POST['pseudo']) && !empty($_POST['pseudo'])) {
+    $request = $database->prepare("SELECT * FROM `user` WHERE pseudo = :pseudo");
+    $request->execute(['pseudo' => $_POST['pseudo']]);
     $user = $request->fetch();
-   
-    if ($user === false) {
-        $statistique = 0;
-        $requete = $database->prepare("INSERT INTO user (stat, pseudo) 
-                    VALUES (:stat, :pseudo)");
+
+    if (!$user) {
+        $like = 0;
+        $src_avatar = 0;
+        $requete = $database->prepare("INSERT INTO user (pseudo) 
+                    VALUES (:pseudo)");
 
         $result = $requete->execute([
-            'stat' => $statistique,
-            'pseudo' => $_POST['pseudo']
-
+            'pseudo' => $_POST['pseudo'],
+           
         ]);
 
         $user = [
             'id' => $database->lastInsertId(),
             'pseudo' => $_POST['pseudo'],
-            
+       
         ];
     }
 
-    //var_dump($user);
     session_start();
-    $_SESSION['user'] = $user;
-// var_dump($_SESSION['user']);
+   $_SESSION['user'] = $user;
+    
 }
-//die();
-//var_dump($_POST);
-header('Location: ../index.php');
+
+header('Location: ../process/back_end.php');
+?>
