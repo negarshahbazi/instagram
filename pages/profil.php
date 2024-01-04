@@ -30,7 +30,7 @@
             <ul>
 
                 <li>
-                    <div class="col-4"><img class="border myImage" src="" alt=""></div>
+                    <div class="col-4"><img class="border myImage" src="<?php ?>" alt=""></div>
                     <div class="col-4"><img class="border myImage" src="" alt=""></div>
                     <div class="col-4"><img class="border myImage" src="" alt=""></div>
                 </li>

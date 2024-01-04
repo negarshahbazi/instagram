@@ -27,7 +27,7 @@ session_start();
                 </div>
                 <div class="card-body text-center">
                     <p class="card-text text-center  ">
-                        <button type="submit" name="postMyImage">Envoyer</button></p>
+                        <button type="submit" name="postMyImage" value="Upload Image">Envoyer</button></p>
                 </div>
             </div>
         </div>

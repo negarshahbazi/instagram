@@ -1,12 +1,14 @@
 
 <?php
-session_start();
-
-if(isset($_POST['postMyImage'])) {
-    
+// session_start();
+// $pseudo=$_SESSION['user'];
+// var_dump($pseudo);
+if(isset($_POST['postMyImage']) && isset($_FILES['srcMyPost'])) {
+    session_start();
     var_dump($_FILES['srcMyPost']);
+    // var_dump($pseudo);
     $errors = array();
-    $file_name = $_FILES['srcMyPost']['name'];
+    $file_name = basename($_FILES['srcMyPost']['name']);
     $file_size = $_FILES['srcMyPost']['size'];
     $file_tmp = $_FILES['srcMyPost']['tmp_name'];
     $file_type = $_FILES['srcMyPost']['type'];
@@ -24,7 +26,7 @@ if(isset($_POST['postMyImage'])) {
 
     if (empty($errors) == true) {
        
-        $resultat = move_uploaded_file($file_tmp, "images/" . $file_name);
+        $resultat = move_uploaded_file($file_tmp, "../images/" . $file_name);
         echo "Success";
     } else {
         
@@ -32,16 +34,16 @@ if(isset($_POST['postMyImage'])) {
     }
 
 
-require_once('./connexion.php');
+header('Location: ../pages/profil.php');
 }
-// $request = $database->query("SELECT * FROM user WHERE pseudo=" . $_SESSION['pseudo']);
+// $request = $database->query("SELECT * FROM user WHERE pseudo=" . $pseudo);
 // // $request->fetch
 // if ($resultat) {
 //     $request = $database->prepare('INSERT INTO post (src_photo) VALUES (:src_photo)');
 //     $request->execute([
 //         ' :src_photo' => $resultat,
 //     ]);
-//     //  header("Location: profil.php?id=".$_SESSION['id']);
+//     //  header("Location: profil.php?id=".$pseudo);
 //     //  header("Location: profil.php");
 // }
 ?>
