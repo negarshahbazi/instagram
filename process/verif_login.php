@@ -1,0 +1,34 @@
+<?php
+require_once('../process/connexion.php');
+
+
+if (isset($_POST['pseudo']) && !empty($_POST['pseudo'])) {
+    $request = $database->prepare("SELECT * FROM `user` WHERE pseudo = :pseudo");
+    $request->execute(['pseudo' => $_POST['pseudo']]);
+    $user = $request->fetch();
+
+    if (!$user) {
+        $like = 0;
+        $src_avatar = 0;
+        $requete = $database->prepare("INSERT INTO user (pseudo) 
+                    VALUES (:pseudo)");
+
+        $result = $requete->execute([
+            'pseudo' => $_POST['pseudo'],
+           
+        ]);
+
+        $user = [
+            'id' => $database->lastInsertId(),
+            'pseudo' => $_POST['pseudo'],
+       
+        ];
+    }
+
+    session_start();
+   $_SESSION['user'] = $user;
+    
+}
+
+header('Location: ../process/back_end.php');
+?>
