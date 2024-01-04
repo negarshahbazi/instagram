@@ -1,7 +1,7 @@
 
 <?php
-// session_start();
-// $pseudo=$_SESSION['user'];
+session_start();
+$pseudo=$_SESSION['user'];
 // var_dump($pseudo);
 if(isset($_POST['postMyImage']) && isset($_FILES['srcMyPost'])) {
     session_start();

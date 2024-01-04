@@ -1,3 +1,15 @@
+
+<?php
+
+session_start();
+$pseudo=$_SESSION['user'];
+
+?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,7 +42,7 @@
             <ul>
 
                 <li>
-                    <div class="col-4"><img class="border myImage" src="<?php ?>" alt=""></div>
+                    <div class="col-4"><img class="border myImage" src="<?php echo $pseudo['pseudo']?>" alt=""></div>
                     <div class="col-4"><img class="border myImage" src="" alt=""></div>
                     <div class="col-4"><img class="border myImage" src="" alt=""></div>
                 </li>
