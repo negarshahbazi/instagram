@@ -21,6 +21,8 @@ var_dump($_SESSION['srcMyPost']);
             <div class="card m-5" style="width: 40rem;">
                 <h4 class="text-center m-5">choisir votre photo:</h4>
                 <div class="text-center m-5">
+                <!-- <?php  move_uploaded_file($image["tmp_name"],  $_SESSION['srcMyPost']); ?> -->
+                    <!-- <?php  move_uploaded_file( '',  $_SESSION['srcMyPost']); ?> -->
                     <img src="<?php echo $_SESSION['srcMyPost']?>" alt="">
                     <input class="" type="file" name="srcMyPost">
                 </div>
