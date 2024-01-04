@@ -3,7 +3,7 @@
 //var_dump($_POST);
 
 try {
-    $dsn = 'mysql:hots=localhost;dbname=instagram';
+    $dsn = 'mysql:host=localhost;dbname=instagram';
 
     $username = 'root';
 

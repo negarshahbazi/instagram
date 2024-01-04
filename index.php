@@ -1,17 +1,13 @@
 <?php
-
+require_once('./process/connexion.php');
 include_once('./partiel/header.php');
 
 session_start();
 ?>
 
 <?php if (!isset($_SESSION['user']) || empty($_SESSION['user'])) { ?>
-<<<<<<< HEAD
     <section class="container md pt-5 mr-0 ml-0 d-flex align-items-center justify-content-center">
-=======
-    <section  class="container md pt-5 mr-0 ml-0 d-flex align-items-center justify-content-center" id="">
->>>>>>> anthony
-        <form action="../process/verif_login.php" method="post">
+        <form action="./process/verif_login.php" method="post">
             <div id="bg-pseudo" class="card-body d-flex align-items-center justify-content-center" style="width: 40rem; height: 31rem;">
                 <div id="bouton" class="d-flex justify-content-end">
                     <input type="text" class="form-control w-50 opacity-75" id="pseudo" name="pseudo">
