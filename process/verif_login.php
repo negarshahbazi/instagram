@@ -32,5 +32,5 @@ if (isset($_POST['pseudo']) && !empty($_POST['pseudo'])) {
     //var_dump($user);
 }
 
-header('Location: ../pages/index.php');
+header('Location: ../process/back_end.php');
 ?>
