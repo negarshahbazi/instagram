@@ -1,5 +1,6 @@
 body{
     box-sizing: border-box;
+    background-color: #D13C98;
    
 }
 .myHead{
@@ -18,6 +19,6 @@ body{
 #bg-pseudo{
     height: 100%;
     width: 100%;
-    background-image: url(../bg-pseudo.png);
+    background-image: url(../images/bg-pseudo.png);
     border-radius: 30px;
- 
+}
