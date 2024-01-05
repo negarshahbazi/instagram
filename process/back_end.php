@@ -2,10 +2,11 @@
 <?php
 session_start();
 $pseudo=$_SESSION['user'];
-// var_dump($pseudo);
+
+var_dump($pseudo);
 if(isset($_POST['postMyImage']) && isset($_FILES['srcMyPost'])) {
-    session_start();
-    var_dump($_FILES['srcMyPost']);
+    
+    // var_dump($_FILES['srcMyPost']);
     // var_dump($pseudo);
     $errors = array();
     $file_name = basename($_FILES['srcMyPost']['name']);
@@ -26,7 +27,8 @@ if(isset($_POST['postMyImage']) && isset($_FILES['srcMyPost'])) {
 
     if (empty($errors) == true) {
        
-        $resultat = move_uploaded_file($file_tmp, "../images/" . $file_name);
+        $resultat = move_uploaded_file($file_tmp , "../images/" . $file_name);
+      
         echo "Success";
     } else {
         
@@ -34,18 +36,23 @@ if(isset($_POST['postMyImage']) && isset($_FILES['srcMyPost'])) {
     }
 
 
-header('Location: ../pages/profil.php');
+// header('Location: ../pages/profil.php');
 }
-// $request = $database->query("SELECT * FROM user WHERE pseudo=" . $pseudo);
-// // $request->fetch
-// if ($resultat) {
-//     $request = $database->prepare('INSERT INTO post (src_photo) VALUES (:src_photo)');
-//     $request->execute([
-//         ' :src_photo' => $resultat,
-//     ]);
-//     //  header("Location: profil.php?id=".$pseudo);
-//     //  header("Location: profil.php");
-// }
+require_once('./connexion.php');
+$request = $database->query("SELECT * FROM user WHERE pseudo=" . $pseudo['pseudo']);
+// $request = $database->query("SELECT * FROM user INNER JOIN  post ON user.id = post.user_id WHERE pseudo=" .$pseudo['pseudo']);
+$person = $request->fetch();
+// var_dump($person);
+
+    $request = $database->prepare('INSERT INTO post (user_id, src_photo) VALUES (:user_id,:src_photo)');
+    $request->execute([
+        ':user_id'=>$person['id'],
+        ' :src_photo' => $file_tmp,
+    ]);
+    // var_dump($pseudo['id']);
+    //  header("Location: profil.php?id=".$pseudo);
+    //  header("Location: profil.php");
+
 ?>
    
 
