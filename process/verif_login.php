@@ -8,7 +8,8 @@ if (isset($_POST['pseudo']) && !empty($_POST['pseudo'])) {
     $user = $request->fetch();
 
     if (!$user) {
-      
+        $like = 0;
+        $src_avatar = 0;
         $requete = $database->prepare("INSERT INTO user (pseudo) 
                     VALUES (:pseudo)");
 
@@ -29,5 +30,5 @@ if (isset($_POST['pseudo']) && !empty($_POST['pseudo'])) {
     
 }
 
-header('Location: ../process/back_end.php');
+header('Location: ../pages/profil.php');
 ?>
