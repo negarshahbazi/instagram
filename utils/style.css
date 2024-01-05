@@ -4,7 +4,9 @@ body{
    
 }
 .myHead{
-    height: 100px;
+    
+  
+   
 }
 .myPhotos{
     height: 600px;
@@ -21,16 +23,4 @@ body{
     width: 100%;
     background-image: url(../images/bg-pseudo.png);
     border-radius: 30px;
-}
-#profil{
-    background-image: url(../images/bg-instagram.jpg);
-    background-size: cover;
-    display: block;
-    border: solid;
-    margin-top: 50px;
-}
-
-.border-myImage{
-    height: 200px;
-    width: 200px;
 }

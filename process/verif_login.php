@@ -11,19 +11,19 @@ if (isset($_POST['pseudo']) && !empty($_POST['pseudo'])) {
     $user = $request->fetch();
 
     if (!$user) {
-        $like = 0;
-        $src_avatar = 0;
+
         $requete = $database->prepare("INSERT INTO user (pseudo) 
                     VALUES (:pseudo)");
 
         $result = $requete->execute([
             'pseudo' => $_POST['pseudo'],
-           
+        
         ]);
 
         $user = [
             'id' => $database->lastInsertId(),
             'pseudo' => $_POST['pseudo'],
+            
        
         ];
     }
@@ -31,7 +31,7 @@ if (isset($_POST['pseudo']) && !empty($_POST['pseudo'])) {
     session_start();
 
    $_SESSION['user'] = $user;
-    
+  
 }
 
 header('Location: ../pages/profil.php');

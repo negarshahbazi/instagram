@@ -45,7 +45,4 @@ header('Location: ../pages/profil.php');
 }
  
 
-?>```
-   
-
-                     
+?>
