@@ -22,3 +22,26 @@ body{
     background-image: url(../images/bg-pseudo.png);
     border-radius: 30px;
 }
+#profil{
+    background-image: url(../images/bg-instagram.jpg);
+    background-size: cover;
+    display: block;
+    border: solid;
+    margin-top: 50px;
+}
+.myPhotos {
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.myPhotos .row {
+    margin: 0;
+    font-size: 0; /* Remove inline-block space */
+}
+
+.myPhotos .col-4 {
+    display: inline-block;
+    vertical-align: top;
+    white-space: normal;
+    font-size: 16px; /* Reset font size for content */
+}

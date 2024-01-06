@@ -36,16 +36,17 @@ if(isset($_POST['postMyImage']) && isset($_FILES['srcMyPost'])) {
 
 header('Location: ../pages/profil.php');
 }
-// $request = $database->query("SELECT * FROM user WHERE pseudo=" . $pseudo);
-// // $request->fetch
-// if ($resultat) {
-//     $request = $database->prepare('INSERT INTO post (src_photo) VALUES (:src_photo)');
-//     $request->execute([
-//         ' :src_photo' => $resultat,
-//     ]);
-//     //  header("Location: profil.php?id=".$pseudo);
-//     //  header("Location: profil.php");
-// }
+require_once('')
+$request = $database->query("SELECT * FROM user WHERE pseudo=" . $pseudo);
+// $request->fetch
+if ($resultat) {
+    $request = $database->prepare('INSERT INTO post (src_photo) VALUES (:src_photo)');
+    $request->execute([
+        ' :src_photo' => $resultat,
+    ]);
+    //  header("Location: profil.php?id=".$pseudo);
+    //  header("Location: profil.php");
+}
 ?>
    
 
