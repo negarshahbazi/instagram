@@ -13,3 +13,8 @@ document.getElementById('avatar').addEventListener('click',()=>{
     document.getElementById('avatarModal');
     $('#avatarModal').modal('show');
 })
+
+
+document.getElementsByClassName('like').addEventListener('click',()=>{
+    document.getElementsByClassName('like').style.background="red"; 
+})

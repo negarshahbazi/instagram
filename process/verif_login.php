@@ -1,15 +1,17 @@
 <?php
-require_once('../process/connexion.php');
+  session_start();
 
+require_once('../process/connexion.php');
 
 //modification
 if (isset($_POST['pseudo']) && !empty($_POST['pseudo'])) {
-
 
     $request = $database->prepare("SELECT * FROM `user` WHERE pseudo = :pseudo");
     $request->execute(['pseudo' => $_POST['pseudo']]);
     $user = $request->fetch();
 
+
+ 
 
     if (!$user) {
 
@@ -28,11 +30,12 @@ if (isset($_POST['pseudo']) && !empty($_POST['pseudo'])) {
             'src_avatar' => "Avatar-Profile-Vector-PNG-Pic.png",
 
         ];
-        session_start();
+      
         $_SESSION['user'] = $user;
     }
     // avatar code
-    if (isset($_FILES['srcAvatar'])){
+    if (isset($_FILES['srcAvatar']) && isset($_POST['submit'])){
+       
         $errors = array();
         $file_name = basename($_FILES['srcAvatar']['name']);
         $file_size = $_FILES['srcAvatar']['size'];
@@ -53,24 +56,26 @@ if (isset($_POST['pseudo']) && !empty($_POST['pseudo'])) {
         if (empty($errors) == true) {
 
             $resultat = move_uploaded_file($file_tmp, "../images/" . $file_name);
+        
+            require_once('./connexion.php');
+            $requete = $database->prepare("UPDATE user SET src_avatar = :src_avatar WHERE id = :id");
+            $result = $requete->execute([
+                'id' => $_SESSION['user']['id'],
+                'src_avatar' => $file_name,
+            ]);
+            $user = [
+                'id' => $database->lastInsertId(),
+                'pseudo' => $_POST['pseudo'],
+                'src_avatar' => $file_name,
+    
+            ];
+            $_SESSION['user'] = $user;
         } else {
 
             print_r($errors);
         }
-        $requete = $database->prepare("UPDATE user SET src_avatar = :src_avatar WHERE pseudo = :pseudo");
-        $result = $requete->execute([
-            'pseudo' => $_SESSION['user']['pseudo'],
-            'src_avatar' => $file_name,
-        ]);
-        $user = [
-            'id' => $database->lastInsertId(),
-            'pseudo' => $_POST['pseudo'],
-            'src_avatar' => $file_name,
-
-        ];
     }
-    session_start();
-    $_SESSION['user'] = $user;
+
 }
 // var_dump($avatar);
 
