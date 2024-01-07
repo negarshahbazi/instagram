@@ -9,12 +9,23 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
-document.getElementById('avatar').addEventListener('click',()=>{
-    document.getElementById('avatarModal');
-    $('#avatarModal').modal('show');
-})
+// document.getElementById('avatar').addEventListener('click',()=>{
+//     document.getElementById('avatarModal');
+//     $('#avatarModal').modal('show');
+// })
 
-
-document.getElementsByClassName('like').addEventListener('click',()=>{
-    document.getElementsByClassName('like').style.background="red"; 
-})
+// change la color de coeur sur modal like
+document.addEventListener('DOMContentLoaded', function () {
+    console.log('DOM is ready');
+    var likeButton = document.querySelector('.favorite');
+    
+    if (likeButton) {
+        likeButton.addEventListener('click', function () {
+            likeButton.style.color = 'red';
+            console.log('Button clicked');
+            // Additional logic here
+        });
+    } else {
+        console.log('Like button not found');
+    }
+});
