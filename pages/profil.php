@@ -46,8 +46,9 @@ $user = $request->fetch();
                 <?php endforeach; ?>
             </div>
         </section>
-        </form>
+       
         <!--modal post Add this to the end of your HTML body -->
+ <section>      
         <form action="../process/verif_like.php" method="post" enctype="multipart/form-data">
             <div class="modal" id="photoModal" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
@@ -61,25 +62,25 @@ $user = $request->fetch();
                         <div class="modal-body">
                             <img id="modalImage" class="img-fluid" alt="Modal Image">
                         </div>
-                        </form>
+
                         <!-- like -->
-                        <form action="../process/verif_like.php" method="post">
+
                         <div class="m-3 d-flex flex-column align-items-start"><button type="submit" class="btn hover" name="like" id="like"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-heart m-3  favorite" viewBox="0 0 16 16">
                                     <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15" />
-                                </svg><button name="countLike" class="w-25 bg-secondary-subtle border  btn rounded-pill shadow hover border-secondary"><?php echo $_SESSION['countHeatr']?></button></button></div>
-                                </form>
-                                <!-- commentaire -->
-                                <form action="../process/verif_commentaire.php" method="post">
-                        <div class="btn-group m-4 btn-secondary bg-secondary-subtle ">
-                            <input type="text" name="commentaire" value="">
-                            <button class="btn border-secondary" name="envoyerButton">Envoyer</button>
-                            <button class="btn border border-secondary" name="toutMessages">Tout messages</button>
-                        </div>
+                                </svg><button name="countLike" class="w-25 bg-secondary-subtle border  btn rounded-pill shadow hover border-secondary"><?php echo $_SESSION['countHeatr'] ?></button></button></div>
+                        <!-- commentaire -->
+
+                        <form action="../process/verif_commentaire.php" method="post">
+                            <div class="btn-group m-4 btn-secondary bg-secondary-subtle ">
+                                <input type="text" name="commentaire" value="">
+                                <button type="submit" class="btn border-secondary" name="envoyerButton">Envoyer</button>
+                                <button type="submit" class="btn border border-secondary" name="toutMessages" data-toggle="modal" id="comment" data-target="#commentModal">Tout messages</button>
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
-       
+        </form>
 
         <!-- modal avatar Add this to the end of your HTML body -->
         <form action="../process/verif_login.php" method="post" enctype="multipart/form-data">
@@ -103,17 +104,29 @@ $user = $request->fetch();
             </div>
         </form>
         <!--  -->
+        <!-- modal comment Add this to the end of your HTML body -->
+        <form action="../process/verif_commentaire.php" method="post" enctype="multipart/form-data">
+            <div class="modal" id="commentModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Afficher tout les messages:</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <input type="text" class="" name="comment">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" name="sendComment" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <!--  -->
 </section>
-<!-- <footer>
-    <div class="row d-flex justify-content-center align-items-center ">
-        <div class="col-1"><a href="./post.php" class="btn btn-info">post</a></div>
-        <div class="col-1"><button type="submit" name="search" class="btn btn-info"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search-heart" viewBox="0 0 16 16">
-                    <path d="M6.5 4.482c1.664-1.673 5.825 1.254 0 5.018-5.825-3.764-1.664-6.69 0-5.018" />
-                    <path d="M13 6.5a6.471 6.471 0 0 1-1.258 3.844c.04.03.078.062.115.098l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1.007 1.007 0 0 1-.1-.115h.002A6.5 6.5 0 1 1 13 6.5M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11" />
-                </svg>
-        </div>
-    </div>
-    </section>
-</footer> -->
+</form>
 
 <?php require_once('../partiel/footer.php') ?>

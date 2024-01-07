@@ -34,7 +34,7 @@ if (isset($_POST['pseudo']) && !empty($_POST['pseudo'])) {
         $_SESSION['user'] = $user;
     }
     // avatar code
-    if (isset($_FILES['srcAvatar']) && isset($_POST['submit'])){
+    if (isset($_FILES['srcAvatar'])){
        
         $errors = array();
         $file_name = basename($_FILES['srcAvatar']['name']);
@@ -60,8 +60,8 @@ if (isset($_POST['pseudo']) && !empty($_POST['pseudo'])) {
             require_once('./connexion.php');
             $requete = $database->prepare("UPDATE user SET src_avatar = :src_avatar WHERE id = :id");
             $result = $requete->execute([
-                'id' => $_SESSION['user']['id'],
                 'src_avatar' => $file_name,
+                'id' => $_SESSION['user']['id'],
             ]);
             $user = [
                 'id' => $database->lastInsertId(),
@@ -77,7 +77,7 @@ if (isset($_POST['pseudo']) && !empty($_POST['pseudo'])) {
     }
 
 }
-// var_dump($avatar);
+// var_dump( $user);
 
 
 header('Location: ../pages/profil.php');
