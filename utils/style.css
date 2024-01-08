@@ -1,14 +1,16 @@
-body{
+
+
+body {
+    height: 100%;
+    width: auto;
     box-sizing: border-box;
     background-color: #D13C98;
+    font-family: 'Merriweather', serif;
    
+
 }
-.myHead{
-    
-  
-   
-}
-.myPhotos{
+
+.myPhotos {
     height: 600px;
 }
 
@@ -17,10 +19,42 @@ body{
     width: 50px;
     height: 50px;
     border-radius: 50%;
-  }
-#bg-pseudo{
+}
+
+#bg-pseudo {
     height: 100%;
     width: 100%;
-    background-image: url(../images/bg-pseudo.png);
+    background-image: url(../bg-pseudo.png);
     border-radius: 30px;
+}
+
+#profil {
+    background-image: url(../images/bg-instagram.jpg);
+    background-size: cover;
+    display: block;
+    border: solid;
+    margin-top: 50px;
+}
+
+.border-myImage {
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+
+
+}
+
+#accueil{
+    height: 100%;
+    width: 100%;
+    background-image: url(../images/bg-accueil2.webp);
+    background-size: cover;
+    display: block;
+    border: solid;
+  
+}
+
+#image-accueil{
+    padding-top: 600px;
+    
 }
