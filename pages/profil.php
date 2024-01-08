@@ -1,14 +1,14 @@
 <?php
 session_start();
-// var_dump($_SESSION);
+// var_dump($_SESSION['countHeart'] );
 // var_dump($_SESSION['user']['src_avatar']);
 require_once('../process/connexion.php');
 $request = $database->prepare("SELECT * FROM post WHERE user_id = :user_id ");
 $request->execute([':user_id' => $_SESSION['user']['id']]);
 $posts = $request->fetchAll();
 
-$request = $database->prepare("SELECT * FROM user WHERE pseudo = :pseudo ");
-$request->execute([':pseudo' => $_SESSION['user']['pseudo']]);
+$request = $database->prepare("SELECT * FROM user WHERE id = :id ");
+$request->execute([':id' => $_SESSION['user']['id']]);
 $user = $request->fetch();
 // var_dump($user);
 ?>
@@ -45,6 +45,7 @@ $user = $request->fetch();
                     </div>
                 <?php endforeach; ?>
             </div>
+           </form>
         </section>
        
         <!--modal post Add this to the end of your HTML body -->
@@ -62,12 +63,12 @@ $user = $request->fetch();
                         <div class="modal-body">
                             <img id="modalImage" class="img-fluid" alt="Modal Image">
                         </div>
-
                         <!-- like -->
+                   
 
                         <div class="m-3 d-flex flex-column align-items-start"><button type="submit" class="btn hover" name="like" id="like"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-heart m-3  favorite" viewBox="0 0 16 16">
                                     <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15" />
-                                </svg><button name="countLike" class="w-25 bg-secondary-subtle border  btn rounded-pill shadow hover border-secondary"><?php echo $_SESSION['countHeatr'] ?></button></button></div>
+                                </svg><button name="countLike" class="w-25 bg-secondary-subtle border  btn rounded-pill shadow hover border-secondary"><?php echo $_SESSION['countHeart'] ?></button></button></div>
                         <!-- commentaire -->
 
                         <form action="../process/verif_commentaire.php" method="post">
@@ -83,7 +84,7 @@ $user = $request->fetch();
         </form>
 
         <!-- modal avatar Add this to the end of your HTML body -->
-        <form action="../process/verif_login.php" method="post" enctype="multipart/form-data">
+        <form action="../process/change_avatar.php" method="post" enctype="multipart/form-data">
             <div class="modal" id="avatarModal" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -127,6 +128,6 @@ $user = $request->fetch();
         </form>
         <!--  -->
 </section>
-</form>
+
 
 <?php require_once('../partiel/footer.php') ?>

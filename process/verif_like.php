@@ -1,6 +1,6 @@
 <?php
 session_start();
-var_dump($_SESSION['user']['id']);
+// var_dump($_SESSION['user']['id']);
 require_once('./connexion.php');
 $request = $database->prepare('SELECT * FROM post  WHERE user_id=:user_id');
 $request->execute([
@@ -24,7 +24,7 @@ if(isset($_POST['like'])){
         ':post_id' => $like['id'],
         ':count'=>$count,
     ]);
-    $_SESSION['countHeatr']=$count;
+    $_SESSION['countHeart']=$count;
     // var_dump($count);
     if ($updateResult) {
         echo "Like updated successfully!";

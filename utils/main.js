@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-// change la color de coeur sur modal like
+// change la color de coleur sur modal like
 document.addEventListener("DOMContentLoaded", function () {
   console.log("DOM is ready");
   var likeButton = document.querySelector(".favorite");
