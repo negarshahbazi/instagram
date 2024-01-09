@@ -61,7 +61,7 @@ $toutMessages= $request->fetchAll();
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title">Photo Detail</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <button onclick="closeImage()" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -96,7 +96,7 @@ $toutMessages= $request->fetchAll();
                     </div>
                 </div>
             </div>
-       
+       </form>
 
         <!-- modal avatar Add this to the end of your HTML body -->
         <form action="../process/change_avatar.php" method="post" enctype="multipart/form-data">
@@ -105,7 +105,7 @@ $toutMessages= $request->fetchAll();
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title">choisir votre photo:</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                            <button onclick="closeImage()" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -130,7 +130,7 @@ $toutMessages= $request->fetchAll();
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title">Afficher tout les messages:</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <button onclick="closeImage()" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
