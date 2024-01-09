@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-  // change avatar
+// change avatar
   document.addEventListener("DOMContentLoaded", function () {
     const myAvatarElements = document.getElementById("avatar");
   
@@ -56,6 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // Utiliser la méthode 'hide' pour fermer la modale
       let modal = new bootstrap.Modal(button);
       modal.hide();
+      header('Location: ../pages/profil.php'); 
   }
   
 
