@@ -14,7 +14,7 @@ session_start();
 <body>
     <section class="container md pt-5 mr-0 ml-0 d-flex align-items-center justify-content-center">
 
-    <section  class="container md pt-5 mr-0 ml-0 d-flex align-items-center justify-content-center" id="">
+    <section  class="container md pt-5 mr-0 ml-0 d-flex align-items-center justify-content-center">
 
         <form action="./process/verif_login.php" method="post">
             <div id="bg-pseudo" class="card-body d-flex align-items-center justify-content-center" style="width: 40rem; height: 31rem;">

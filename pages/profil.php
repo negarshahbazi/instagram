@@ -3,9 +3,13 @@ session_start();
 // var_dump($_SESSION['countHeart'] );
 // var_dump($_SESSION['user']['pseudo']);
 require_once('../process/connexion.php');
-$request = $database->prepare("SELECT * FROM post WHERE user_id = :user_id ");
+
+
+$request = $database->prepare("SELECT * FROM post WHERE user_id = :user_id LIMIT 6");
 $request->execute([':user_id' => $_SESSION['user']['id']]);
 $posts = $request->fetchAll();
+// $_SESSION['user'];
+// var_dump($pseudo['pseudo']);
 
 $request = $database->prepare("SELECT * FROM user WHERE id = :id ");
 $request->execute([':id' => $_SESSION['user']['id']]);

@@ -9,7 +9,10 @@ if (isset($_POST['pseudo']) && !empty($_POST['pseudo'])) {
     $request = $database->prepare("SELECT * FROM `user` WHERE pseudo = :pseudo");
     $request->execute(['pseudo' => $_POST['pseudo']]);
     $user = $request->fetch();
+
     $_SESSION['user'] = $user;
+ 
+
 
  
 
@@ -33,9 +36,12 @@ if (isset($_POST['pseudo']) && !empty($_POST['pseudo'])) {
       
         $_SESSION['user'] = $user;
     }
- 
-// var_dump( $user);
 
+    session_start();
+
+   $_SESSION['user'] = $user;
+  
+}
 
 header('Location: ../pages/profil.php');
 }
