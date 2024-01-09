@@ -15,6 +15,7 @@ $request = $database->prepare('SELECT * FROM favorite WHERE user_id=:user_id AND
 $request->execute([
     ':user_id'=> $_SESSION['user']['id'],
     ':post_id'=> $like['id'],
+   
 ]);
 $existingLike = $request->fetch();
 
@@ -49,7 +50,8 @@ if(isset($_POST['like'])){
 
     // Mettre à jour le compteur dans la session
     $_SESSION['countHeart'] = $count;
-}
 
+}
 var_dump($_SESSION['countHeart']);
+//var_dump($_SESSION['countHeart']);
 header('Location: ../pages/profil.php');
