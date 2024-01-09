@@ -11,6 +11,9 @@ body{
     height: 600px;
 }
 
+
+  
+ 
 #bg-pseudo{
     height: 100%;
     width: 100%;
@@ -44,26 +47,3 @@ body{
     white-space: normal;
     font-size: 16px; /* Reset font size for content */
 }
-
-
-   
-
-#scroll_to_top {
-    position: fixed;
-    width: 25px;
-    height: 25px;
-    bottom: 50px;
-    right: 30px;
-  }
-  #scroll_to_top img {
-    width: 30px;
-  }
-
-  .body-accueil{
-    background-image: url(../images/bg-accueil2.webp);
-    background-size: cover;
-    background-repeat: round;
-    height: 100%;
-}
-
-  
