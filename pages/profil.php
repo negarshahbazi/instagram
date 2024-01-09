@@ -14,14 +14,12 @@ $posts = $request->fetchAll();
 $request = $database->prepare("SELECT * FROM user WHERE id = :id ");
 $request->execute([':id' => $_SESSION['user']['id']]);
 $user = $request->fetch();
-// var_dump($user);
+
 // fetch la table de comment
-// $request = $database->prepare("SELECT * FROM comment ORDER BY id DESC");
-// $request->execute();
-// $toutMessages= $request->fetchAll();
-$request = $database->prepare("SELECT * FROM comment INNER JOIN user WHERE comment.user_id = user.id ORDER BY comment.id DESC ");
-$request->execute();
+$request = $database->prepare("SELECT * FROM comment INNER JOIN user ON comment.user_id = user.id INNER JOIN post ON comment.post_id=post.id WHERE comment.post_id = :post_id ORDER BY comment.id DESC ");
+$request->execute([':post_id'=>79]);
 $toutMessages= $request->fetchAll();
+var_dump($toutMessages);
 ?>
 <?php require_once('../partiel/header.php') ?>
 <!-- header -->
@@ -53,6 +51,8 @@ $toutMessages= $request->fetchAll();
             <div class="row d-flex justify-content-center align-items-center">
                 <?php foreach ($posts as $post) : ?>
                     <div class="col-lg-4">
+                        <p class="d-none" id="postId"> <?= $post['id'] ?></p>
+                        <h4 id="myId"> <?= $post['id'] ?></h4>
                         <img class="border-myImage pt-5 myPost" src="<?php echo "../images/" . $post['src_photo'] ?>" alt="">
                     </div>
                 <?php endforeach; ?>
@@ -68,7 +68,7 @@ $toutMessages= $request->fetchAll();
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title">Photo Detail</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <button onclick="closeImage()" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -81,6 +81,7 @@ $toutMessages= $request->fetchAll();
                         <div class="m-3 d-flex flex-column align-items-start"><button type="submit" class="btn hover" name="like" id="like"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-heart m-3  favorite" viewBox="0 0 16 16">
                                     <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15" />
                                 </svg><button name="countLike" class="w-25 bg-secondary-subtle border  btn rounded-pill shadow hover border-secondary"><?php echo $_SESSION['countHeart'] ?></button></button></div>
+                               <div id="idPost"></div>
                         <!-- commentaire -->
                         </form>
                         <form action="../process/verif_commentaire.php" method="post">
@@ -89,11 +90,11 @@ $toutMessages= $request->fetchAll();
                                 <button type="submit" class="btn border-secondary" name="envoyerButton">Envoyer</button>
                                 <button type="submit" class="btn border border-secondary" name="toutMessages" data-toggle="modal" id="comment" data-target="#commentModal">Tout messages</button>
                             </div>
-                            <div class="invisible " id="boxOfCommentaire">
+                            <div class="" id="boxOfCommentaire">
                                 <ul class="list-unstyled p-5 ">
                                     <?php foreach($toutMessages as $toutMessage) {?>
                                     <li>
-                                        <?php echo '<img class="petitPhoto m-2 w-25 rounded-pill" src="../images/'.$toutMessage['src_avatar'].'" alt="">'.$toutMessage['pseudo'].' : '. $toutMessage['commentaire'].'<hr>'  ?>
+                                        <?php echo '<img class="petitPhoto m-2 w-25 h-25 rounded-pill" src="../images/'.$toutMessage['src_avatar'].'" alt="">'.$toutMessage['pseudo'].' : '. $toutMessage['commentaire'].'<hr>'  ?>
 
                                     </li>
                                     <?php } ?>
@@ -112,7 +113,7 @@ $toutMessages= $request->fetchAll();
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title">choisir votre photo:</h5>
-                            <button type="button" class="close1" data-dismiss="modal" aria-label="Close">
+                            <button onclick="closeImage()" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -137,7 +138,7 @@ $toutMessages= $request->fetchAll();
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title">Afficher tout les messages:</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <button onclick="closeImage()" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>

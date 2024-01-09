@@ -3,11 +3,15 @@ document.addEventListener("DOMContentLoaded", function () {
   const myPostElements = document.getElementsByClassName("myPost");
 
   Array.from(myPostElements).forEach(function (element) {
-    element.addEventListener("click", function () {
-      const imageUrl = element.src;
-      document.getElementById("modalImage").src = imageUrl;
-      $("#photoModal").modal("show");
-    });
+      element.addEventListener("click", function () {
+
+          const postId = element.dataset.postId; // Retrieve post ID from data attribute
+          document.getElementById("idPost").innerText = postId; // Display post ID
+
+          const imageUrl = element.src;
+          document.getElementById("modalImage").src = imageUrl;
+          $("#photoModal").modal("show");
+      });
   });
 });
 // change avatar
@@ -38,33 +42,32 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 // comment modal
-document.addEventListener("DOMContentLoaded", function () {
-  const commentModalElement = document.getElementById("commentModal");
-  // const commentModal2Element = document.getElementById("commentModal2");
+// document.addEventListener("DOMContentLoaded", function () {
+//   const commentModalElement = document.getElementById("commentModal");
+//   // const commentModal2Element = document.getElementById("commentModal2");
 
-  // Show comment modal 1
-  commentModalElement.addEventListener("click", function () {
-     $("#commentModal").modal("show");
-  });
+//   // Show comment modal 1
+//   commentModalElement.addEventListener("click", function () {
+//      $("#commentModal").modal("show");
+//   });
 
   // Show comment modal 2
   // commentModal2Element.addEventListener("click", function () {
   //    $("#commentModal2").modal("show");
-  // });
-});
-document.getElementById('comment').addEventListener('click',()=>{
-  document.getElementById('boxOfCommentaire').className="visible";
+//   // });
+// });
+// document.getElementById('comment').addEventListener('click',()=>{
+//   document.getElementById('boxOfCommentaire').className="visible";
 
-}
-)
+// }
+// )
 
 // close
-const closeButtons = document.getElementsByClassName('close');
 
-// Using Array.from to convert the collection to an array
-Array.from(closeButtons).forEach(function (button) {
-  button.addEventListener('click', () => {
-    $("#commentModal").modal("hide");
+let button = document.getElementById('photoModal');
 
-  });
-});
+function closeImage() {
+    // Utiliser la méthode 'hide' pour fermer la modale
+    let modal = new bootstrap.Modal(button);
+    modal.hide();
+}

@@ -44,4 +44,3 @@ if (isset($_POST['pseudo']) && !empty($_POST['pseudo'])) {
 }
 
 header('Location: ../pages/profil.php');
-}
