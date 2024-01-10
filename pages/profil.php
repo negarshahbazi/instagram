@@ -12,9 +12,10 @@ $request->execute([':id' => $_SESSION['user']['id']]);
 $user = $request->fetch();
 // var_dump($user);
 // fetch la table de comment
-$request = $database->prepare("SELECT * FROM comment ORDER BY id DESC");
-$request->execute();
+$request = $database->prepare("SELECT * FROM comment INNER JOIN user ON comment.user_id = user.id INNER JOIN post ON comment.post_id=post.id WHERE comment.post_id = :post_id ORDER BY comment.id DESC ");
+$request->execute([':post_id'=>79]);
 $toutMessages= $request->fetchAll();
+// var_dump($toutMessages);
 ?>
 <?php require_once('../partiel/header.php') ?>
 <!-- header -->
@@ -86,7 +87,7 @@ $toutMessages= $request->fetchAll();
                                 <ul>
                                     <?php foreach($toutMessages as $toutMessage) {?>
                                     <li>
-                                        <?php echo $toutMessage['commentaire'].'<hr>'  ?>
+                                        <?php echo '<img class="petitPhoto m-2 w-25 h-25 rounded-pill" src="../images/'.$toutMessage['src_avatar'].'" alt="">'.$toutMessage['pseudo'].' : '. $toutMessage['commentaire'].'<hr>'  ?>
 
                                     </li>
                                     <?php } ?>
