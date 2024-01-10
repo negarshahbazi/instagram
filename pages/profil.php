@@ -8,9 +8,16 @@ require_once('../process/connexion.php');
 $request = $database->prepare("SELECT * FROM post WHERE user_id = :user_id LIMIT 6");
 $request->execute([':user_id' => $_SESSION['user']['id']]);
 $posts = $request->fetchAll();
-// $_SESSION['user'];
-// var_dump($pseudo['pseudo']);
 
+$request = $database->prepare("SELECT * FROM user WHERE id = :id ");
+$request->execute([':id' => $_SESSION['user']['id']]);
+$user = $request->fetch();
+// var_dump($user);
+// fetch la table de comment
+$request = $database->prepare("SELECT * FROM comment INNER JOIN user ON comment.user_id = user.id INNER JOIN post ON comment.post_id=post.id WHERE comment.post_id = :post_id ORDER BY comment.id DESC ");
+$request->execute([':post_id'=>79]);
+$toutMessages= $request->fetchAll();
+// var_dump($toutMessages);
 ?>
 <?php require_once('../partiel/header.php') ?>
 <!-- header -->
@@ -55,7 +62,7 @@ $posts = $request->fetchAll();
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title">Photo Detail</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <button onclick="closeImage()" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -76,11 +83,21 @@ $posts = $request->fetchAll();
                                 <button type="submit" class="btn border-secondary" name="envoyerButton">Envoyer</button>
                                 <button type="submit" class="btn border border-secondary" name="toutMessages" data-toggle="modal" id="comment" data-target="#commentModal">Tout messages</button>
                             </div>
+                            <div>
+                                <ul>
+                                    <?php foreach($toutMessages as $toutMessage) {?>
+                                    <li>
+                                        <?php echo '<img class="petitPhoto m-2 w-25 h-25 rounded-pill" src="../images/'.$toutMessage['src_avatar'].'" alt="">'.$toutMessage['pseudo'].' : '. $toutMessage['commentaire'].'<hr>'  ?>
+
+                                    </li>
+                                    <?php } ?>
+                                </ul>
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
-        </form>
+       </form>
 
         <!-- modal avatar Add this to the end of your HTML body -->
         <form action="../process/verif_login.php" method="post" enctype="multipart/form-data">
@@ -89,7 +106,7 @@ $posts = $request->fetchAll();
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title">choisir votre photo:</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <button onclick="closeImage()" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -111,7 +128,7 @@ $posts = $request->fetchAll();
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title">Afficher tout les messages:</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <button onclick="closeImage()" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
