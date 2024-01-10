@@ -1,51 +1,63 @@
-body{
-    box-sizing: border-box;
-    background-color: #D13C98;
-    height: 100%;
-   
-
-   
+body {
+  box-sizing: border-box;
+  background-color: #d13c98;
+  height: 100%;
 }
 
-.myPhotos{
-    height: 600px;
+.myPhotos {
+  height: 600px;
 }
 
-
-  
- 
-#bg-pseudo{
-    height: 100%;
-    width: 100%;
-    background-image: url(../images/bg-pseudo.png);
-    border-radius: 30px;
+#bg-pseudo {
+  height: 100%;
+  width: 100%;
+  background-image: url(../images/bg-pseudo.png);
+  border-radius: 30px;
 }
-#profil{
-    background-image: url(../images/bg-instagram.jpg);
-    background-size: cover;
-    display: block;
-    border: solid;
-    margin-top: 50px;
+#profil {
+  background-image: url(../images/bg-instagram.jpg);
+  background-size: cover;
+  display: block;
+  border: solid;
+  margin-top: 50px;
 }
-.border-myImage{
-    height: 400px;
-    width: 400px;
+.border-myImage {
+  height: 400px;
+  width: 400px;
 }
 .myPhotos {
-    overflow-x: auto;
-    white-space: nowrap;
+  overflow-x: auto;
+  white-space: nowrap;
 }
 
 .myPhotos .row {
-    margin: 0;
-    font-size: 0; /* Remove inline-block space */
+  margin: 0;
+  font-size: 0; /* Remove inline-block space */
 }
 
 .myPhotos .col-4 {
-    display: inline-block;
-    vertical-align: top;
-    white-space: normal;
-    font-size: 16px; /* Reset font size for content */
+  display: inline-block;
+  vertical-align: top;
+  white-space: normal;
+  font-size: 16px; /* Reset font size for content */
+}
+
+#scroll_to_top {
+  position: fixed;
+  width: 25px;
+  height: 25px;
+  bottom: 50px;
+  right: 30px;
+}
+#scroll_to_top img {
+  width: 30px;
+}
+
+.body-accueil {
+  background-image: url(../images/bg-accueil2.webp);
+  background-size: cover;
+  background-repeat: round;
+  height: 100%;
 }
 .petitPhoto{
     width: 5px;

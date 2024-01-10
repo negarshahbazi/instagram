@@ -3,6 +3,7 @@ require_once('../process/connexion.php');
 session_start();
 
 
+
 // var_dump($_SESSION['user']);
 //récupère la photo du profil ........................................................
 $result = $database->prepare("SELECT src_avatar FROM user WHERE id = :id");
@@ -66,10 +67,12 @@ $toutMessages = $request->fetchAll();
                         $result = $database->query("SELECT src_photo FROM post ORDER BY id DESC");
 
                         $result->execute();
-                        $pictures = $result->fetchAll();
-                        foreach ($pictures as $picture) : ?>
+                        $posts = $result->fetchAll();
+                        foreach ($posts as $post) :?>
+                     
+                        
                             <div class="col-lg-4">
-                                <img class="border-myImage pt-5 myPost" src="<?php echo "../images/" . $picture['src_photo'] ?>" alt="">
+                                <img class="border-myImage pt-5 myPost" src="<?php echo "../images/" . $post['src_photo'] ?>" alt="">
 
                             </div>
                         <?php endforeach; ?>
@@ -134,6 +137,5 @@ $toutMessages = $request->fetchAll();
     </div>
     <script src="../utils/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-</body>
-
-</html>
+    
+    <?php include_once ('../partiel/footer.php'); ?>  

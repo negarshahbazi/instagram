@@ -15,6 +15,7 @@ $request->execute([
     ':user_id'=> $_SESSION['user']['id'],
     ':post_id'=> $like['id'],
     ':count'=>$count,
+   
 ]);
 if(isset($_POST['like'])){
     $count+=1;
@@ -32,9 +33,12 @@ if(isset($_POST['like'])){
         echo "Error updating like!";
     }
 
+    // Mettre à jour le compteur dans la session
+    $_SESSION['countHeart'] = $count;
+
 }
-
-
+var_dump($_SESSION['countHeart']);
+//var_dump($_SESSION['countHeart']);
 header('Location: ../pages/profil.php');
 
 
