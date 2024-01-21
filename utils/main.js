@@ -13,15 +13,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // post accueil
 document.addEventListener("DOMContentLoaded", function () {
-  const myPostElements = document.getElementsByClassName("myPost");
+const myPostElements = document.getElementsByClassName("myPost");
 
-  Array.from(myPostElements).forEach(function (element) {
-    element.addEventListener("click", function () {
-      const imageUrl = element.src;
-      document.getElementById("modalImage").src = imageUrl;
-      $("#photoModal").modal("show");
-    });
+Array.from(myPostElements).forEach(function (element) {
+  element.addEventListener("click", function () {
+    const imageUrl = element.src;
+    document.getElementById("modalImage").src = imageUrl;
+    $("#photoModal").modal("show");
   });
+});
 });
 
 // change avatar
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const myAvatarElements = document.getElementById("avatar");
 
   myAvatarElements.addEventListener("click", function () {
-    document.getElementById("avatarModal");
+    document.getElementById('avatarModal');
     $("#avatarModal").modal("show");
   });
 });
@@ -50,13 +50,16 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-let button = document.getElementById("photoModal");
+let button = document.getElementById('photoModal');
 
 function closeImage() {
-  // Utiliser la méthode 'hide' pour fermer la modale
-  let modal = new bootstrap.Modal(button);
-  modal.hide();
-  header("Location: ../pages/profil.php");
+    // Utiliser la méthode 'hide' pour fermer la modale
+    let modal = new bootstrap.Modal(button);
+    modal.hide();
+    header('Location: ../pages/profil.php'); 
 }
 
+
 console.log(button);
+
+

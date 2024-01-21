@@ -1,27 +1,30 @@
-body {
+body{
   box-sizing: border-box;
-  background-color: #d13c98;
+  background-color: #D13C98;
   height: 100%;
+ 
+
+ 
 }
 
-.myPhotos {
+.myPhotos{
   height: 600px;
 }
 
-#bg-pseudo {
+#bg-pseudo{
   height: 100%;
   width: 100%;
   background-image: url(../images/bg-pseudo.png);
   border-radius: 30px;
 }
-#profil {
+#profil{
   background-image: url(../images/bg-instagram.jpg);
   background-size: cover;
   display: block;
   border: solid;
   margin-top: 50px;
 }
-.border-myImage {
+.border-myImage{
   height: 400px;
   width: 400px;
 }
@@ -42,6 +45,9 @@ body {
   font-size: 16px; /* Reset font size for content */
 }
 
+
+ 
+
 #scroll_to_top {
   position: fixed;
   width: 25px;
@@ -53,7 +59,7 @@ body {
   width: 30px;
 }
 
-.body-accueil {
+.body-accueil{
   background-image: url(../images/bg-accueil2.webp);
   background-size: cover;
   background-repeat: round;

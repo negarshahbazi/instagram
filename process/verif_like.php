@@ -1,36 +1,51 @@
 <?php
 session_start();
-var_dump($_SESSION['user']['id']);
+
 require_once('./connexion.php');
-$request = $database->prepare('SELECT * FROM post  WHERE user_id=:user_id');
+
+// Récupérer la publication associée à l'utilisateur
+$request = $database->prepare('SELECT * FROM post WHERE user_id=:user_id');
 $request->execute([
     ':user_id'=> $_SESSION['user']['id'],
 ]);
-$like=$request->fetch();
-var_dump($like);
-// favorite table
-$count=0;
-$request = $database->prepare('INSERT INTO favorite (user_id,post_id,count) VALUE (:user_id,:post_id,:count)');
+$like = $request->fetch();
+
+// Vérifier si l'utilisateur a déjà aimé cette publication
+$request = $database->prepare('SELECT * FROM favorite WHERE user_id=:user_id AND post_id=:post_id');
 $request->execute([
     ':user_id'=> $_SESSION['user']['id'],
     ':post_id'=> $like['id'],
-    ':count'=>$count,
    
 ]);
+$existingLike = $request->fetch();
+
 if(isset($_POST['like'])){
-    $count+=1;
-    $request = $database->prepare('UPDATE favorite SET count = :count WHERE user_id = :user_id AND post_id = :post_id');
-    $updateResult=$request->execute([
-        ':user_id'=> $_SESSION['user']['id'],
-        ':post_id' => $like['id'],
-        ':count'=>$count,
-    ]);
-    $_SESSION['countHeatr']=$count;
-    // var_dump($count);
-    if ($updateResult) {
-        echo "Like updated successfully!";
+    if($existingLike){
+        // Si l'utilisateur a déjà aimé la publication, retirer le like
+        $request = $database->prepare('DELETE FROM favorite WHERE user_id=:user_id AND post_id=:post_id');
+        $request->execute([
+            ':user_id'=> $_SESSION['user']['id'],
+            ':post_id'=> $like['id'],
+        ]);
+
+        // Réduire le compteur
+        $_SESSION['countHeart'] -= 1;
+
+        echo "Like removed successfully!";
     } else {
-        echo "Error updating like!";
+        // Si l'utilisateur n'a pas encore aimé la publication, ajouter le like
+        $count = 0;
+        $request = $database->prepare('INSERT INTO favorite (user_id, post_id, count) VALUES (:user_id, :post_id, :count)');
+        $request->execute([
+            ':user_id'=> $_SESSION['user']['id'],
+            ':post_id'=> $like['id'],
+            ':count'=> $count,
+        ]);
+
+        // Incrémenter le compteur
+        $count += 1;
+
+        echo "Like added successfully!";
     }
 
     // Mettre à jour le compteur dans la session
@@ -40,6 +55,3 @@ if(isset($_POST['like'])){
 var_dump($_SESSION['countHeart']);
 //var_dump($_SESSION['countHeart']);
 header('Location: ../pages/profil.php');
-
-
-?>
