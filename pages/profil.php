@@ -19,17 +19,17 @@ $toutMessages= $request->fetchAll();
 ?>
 <?php require_once('../partiel/header.php') ?>
 <!-- header -->
-<section class="container" id="profil">
+<section class="container " id="profil">
     <div class="container myHead ">
-        <div class="row mt-2  d-flex justify-content-center align-items-center">
-            <form action="../process/back_end.php" method="post" class="d-flex justify-content-center align-items-center ">
-                <div class="col-2 d-flex flex-column align-items-center btn-secondary">
+        <div class="row mt-2  d-flex justify-content-around align-items-center style">
+            <form action="../process/back_end.php" method="post" class=" d-flex justify-content-center align-items-center ">
+                <div class="col-md-3  d-flex flex-column align-items-center btn-secondary">
                     <!-- avatar -->
                     <img src="<?php echo "../images/" . $user['src_avatar'] ?>" alt="" class="m-2 border rounded-pill w-50 h-50  ">
                     <button type="button" class="btn bg-secondary-subtle" data-toggle="modal" id="avatar" data-target="#avatarModal">Modifier</button>
                 </div>
-                <div class="col-8 btn-secondary">
-                    <input type="text" class="" name="pseudo" value=" <?php echo $_SESSION['user']['pseudo'] ?>">
+                <div class="col-md-6   btn-secondary">
+                    <input type="text" class="inputt" name="pseudo" value=" <?php echo $_SESSION['user']['pseudo'] ?>">
                     <a href="./post.php" class="btn bg-secondary-subtle">post</a>
                     <!-- search -->
                   <a href="./accueil.php" class="btn bg-secondary-subtle"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search-heart" viewBox="0 0 16 16">

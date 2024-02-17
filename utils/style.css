@@ -65,3 +65,12 @@ body{
   background-repeat: round;
   height: 100%;
 }
+@media (max-width:560px){
+  .style{
+   
+    flex-direction: column;
+  }
+  .inputt{
+    width: 20px;
+  }
+}
